@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login — U-STAY</title>
+  <title>Administrator Sign Up — U-STAY</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,37 +22,44 @@
 
   <main>
     <section class="container">
-      <h1>Login</h1>
-      <p class="subtitle">Sign in as Student or Administrator.</p>
+      <h1>Administrator Sign Up</h1>
+      <p class="subtitle">Create an admin account to manage halls and bookings.</p>
 
-      <div class="card" style="margin-top:16px; max-width:600px;">
+      <div class="card" style="margin-top:16px; max-width:700px;">
         <div class="card-body">
-          <form id="login-form">
+          <form id="admin-signup-form">
             <div class="field-row">
               <div>
                 <label for="name">Full name</label>
-                <input id="name" name="name" type="text" placeholder="Your name">
+                <input id="name" name="name" type="text" required>
               </div>
               <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                  <option value="">Select gender</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Non-binary</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div>
+                <label for="telephone">Telephone number</label>
+                <input id="telephone" name="telephone" type="tel" placeholder="e.g., +233 24 123 4567" required>
               </div>
             </div>
 
             <div>
-              <label for="role">Role</label>
-              <select id="role" name="role">
-                <option>Student</option>
-                <option>Administrator</option>
-              </select>
-              <p class="help">Demo auth only; role is not verified server-side.</p>
-            </div>
-
-            <div>
-              <button class="button" type="submit">Sign in</button>
+              <button class="button" type="submit">Create admin account</button>
             </div>
           </form>
-          <p class="help">Don't have an account? <a href="/signup.html">Student Sign Up</a> · <a href="/admin-signup.html">Admin Sign Up</a></p>
         </div>
       </div>
     </section>
@@ -66,6 +73,7 @@
 
   <script type="module" src="/assets/js/app.js"></script>
   <script type="module" src="/assets/js/auth.js"></script>
+  <script type="module" src="/assets/js/admin-signup.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,6 @@
 const USER_KEY = 'u_stay_user';
 const STUDENTS_KEY = 'u_stay_students';
+const ADMINS_KEY = 'u_stay_admins';
 
 export function getCurrentUser() {
   try {
@@ -124,6 +125,17 @@ export function registerStudent(profile) {
   localStorage.setItem(STUDENTS_KEY, JSON.stringify(list));
   // Auto-login student
   login({ email: profile.email, role: 'Student', name: profile.name });
+  return stored;
+}
+
+export function registerAdmin(profile) {
+  const list = JSON.parse(localStorage.getItem(ADMINS_KEY) || '[]');
+  const id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+  const stored = { id, ...profile };
+  list.push(stored);
+  localStorage.setItem(ADMINS_KEY, JSON.stringify(list));
+  // Auto-login as Administrator
+  login({ email: profile.email, role: 'Administrator', name: profile.name });
   return stored;
 }
 

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atwima Hall — U-STAY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">U-STAY</a>
+      <nav class="nav">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/bookings.html" class="nav-link">My Bookings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h1>Atwima Hall</h1>
+      <p class="subtitle">Central location, vibrant community, and easy campus access.</p>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-body">
+          <h2 class="card-title">Book a room</h2>
+          <p class="help">Prices per semester. Full year gets 5% off.</p>
+          <form id="booking-form" data-hall="Atwima Hall" data-price-single="1100" data-price-double="800">
+            <div class="field-row">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="Kofi Mensah" required>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="kofi@example.com" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="roomType">Room type</label>
+                <select id="roomType" name="roomType">
+                  <option>Single</option>
+                  <option>Double</option>
+                </select>
+              </div>
+              <div>
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester">
+                  <option>Semester 1</option>
+                  <option>Semester 2</option>
+                  <option>Full Year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="total">
+              <span>Estimated total</span>
+              <strong id="total-amount">—</strong>
+            </div>
+            <div>
+              <button class="button" type="submit">Book now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> U-STAY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/hall.js"></script>
+</body>
+</html>
+

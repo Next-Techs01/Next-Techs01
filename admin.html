@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Bookings — U-STAY</title>
+  <title>Admin — U-STAY</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,18 +15,22 @@
       <a class="brand" href="/index.html">U-STAY</a>
       <nav class="nav">
         <a href="/index.html" class="nav-link">Home</a>
-        <a href="/bookings.html" class="nav-link active">My Bookings</a>
+        <a href="/bookings.html" class="nav-link">My Bookings</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="container">
-      <h1>My Bookings</h1>
-      <p class="subtitle">View and manage your saved hostel bookings on this device.</p>
+      <h1>Admin Dashboard</h1>
+      <p class="subtitle">Restricted to Administrators. Demo only.</p>
 
-      <div id="bookings-list" class="bookings-list"></div>
-      <div id="empty-state" class="empty hidden" role="status">No bookings yet.</div>
+      <div class="card" style="margin-top:16px;">
+        <div class="card-body">
+          <h2 class="card-title">Overview</h2>
+          <div id="admin-info" class="help">Loading…</div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -37,8 +41,15 @@
   </footer>
 
   <script type="module" src="/assets/js/app.js"></script>
-  <script type="module" src="/assets/js/auth.js"></script>
-  <script type="module" src="/assets/js/bookings.js"></script>
+  <script type="module">
+    import { guardAdmin, getCurrentUser } from '/assets/js/auth.js';
+    guardAdmin();
+    const info = document.getElementById('admin-info');
+    const user = getCurrentUser();
+    if (user) {
+      info.textContent = `Signed in as ${user.name || user.email} (${user.role})`;
+    }
+  </script>
 </body>
 </html>
 

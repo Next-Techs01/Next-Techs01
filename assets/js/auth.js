@@ -1,0 +1,108 @@
+const USER_KEY = 'u_stay_user';
+
+export function getCurrentUser() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+  } catch {
+    return null;
+  }
+}
+
+export function isLoggedIn() {
+  return Boolean(getCurrentUser());
+}
+
+export function login({ email, role, name }) {
+  const cleanRole = role === 'Administrator' ? 'Administrator' : 'Student';
+  const user = { email, role: cleanRole, name: name || email };
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
+  return user;
+}
+
+export function logout() {
+  localStorage.removeItem(USER_KEY);
+}
+
+export function guardAdmin() {
+  const user = getCurrentUser();
+  if (!user || user.role !== 'Administrator') {
+    const returnTo = encodeURIComponent(location.pathname + location.search);
+    location.replace(`/login.html?returnTo=${returnTo}`);
+  }
+}
+
+function ensureNavAuthControls() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+
+  const existingAdmin = nav.querySelector('#nav-admin-link');
+  const existingLogin = nav.querySelector('#nav-login-link');
+  const existingLogout = nav.querySelector('#nav-logout-btn');
+  if (existingAdmin) existingAdmin.remove();
+  if (existingLogin) existingLogin.remove();
+  if (existingLogout) existingLogout.remove();
+
+  const user = getCurrentUser();
+  if (user && user.role === 'Administrator') {
+    const adminLink = document.createElement('a');
+    adminLink.id = 'nav-admin-link';
+    adminLink.href = '/admin.html';
+    adminLink.className = 'nav-link';
+    adminLink.textContent = 'Admin';
+    nav.appendChild(adminLink);
+  }
+
+  if (user) {
+    const logoutBtn = document.createElement('button');
+    logoutBtn.id = 'nav-logout-btn';
+    logoutBtn.className = 'nav-link';
+    logoutBtn.type = 'button';
+    logoutBtn.textContent = `Logout`;
+    logoutBtn.addEventListener('click', () => {
+      logout();
+      // After logout, return to home
+      location.href = '/index.html';
+    });
+    nav.appendChild(logoutBtn);
+  } else {
+    const loginLink = document.createElement('a');
+    loginLink.id = 'nav-login-link';
+    loginLink.href = '/login.html';
+    loginLink.className = 'nav-link';
+    loginLink.textContent = 'Login';
+    nav.appendChild(loginLink);
+  }
+}
+
+function initLoginForm() {
+  const form = document.getElementById('login-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const email = String(formData.get('email') || '').trim();
+    const name = String(formData.get('name') || '').trim();
+    const role = String(formData.get('role') || 'Student');
+    if (!email) {
+      alert('Please enter your email.');
+      return;
+    }
+    login({ email, role, name });
+    const params = new URLSearchParams(location.search);
+    const returnTo = params.get('returnTo');
+    if (role === 'Administrator') {
+      location.href = '/admin.html';
+    } else if (returnTo) {
+      location.href = returnTo;
+    } else {
+      location.href = '/index.html';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  ensureNavAuthControls();
+  initLoginForm();
+});
+

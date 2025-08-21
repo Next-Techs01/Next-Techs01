@@ -38,10 +38,12 @@ function ensureNavAuthControls() {
   if (!nav) return;
 
   const existingAdmin = nav.querySelector('#nav-admin-link');
+  const existingHostels = nav.querySelector('#nav-hostels-link');
   const existingLogin = nav.querySelector('#nav-login-link');
   const existingSignup = nav.querySelector('#nav-signup-link');
   const existingLogout = nav.querySelector('#nav-logout-btn');
   if (existingAdmin) existingAdmin.remove();
+  if (existingHostels) existingHostels.remove();
   if (existingLogin) existingLogin.remove();
   if (existingSignup) existingSignup.remove();
   if (existingLogout) existingLogout.remove();
@@ -54,6 +56,13 @@ function ensureNavAuthControls() {
     adminLink.className = 'nav-link';
     adminLink.textContent = 'Admin';
     nav.appendChild(adminLink);
+
+    const hostelsLink = document.createElement('a');
+    hostelsLink.id = 'nav-hostels-link';
+    hostelsLink.href = '/admin-hostels.html';
+    hostelsLink.className = 'nav-link';
+    hostelsLink.textContent = 'Manage Hostels';
+    nav.appendChild(hostelsLink);
   }
 
   if (user) {

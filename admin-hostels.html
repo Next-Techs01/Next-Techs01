@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage External Hostels — U-STAY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">U-STAY</a>
+      <nav class="nav">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/bookings.html" class="nav-link">My Bookings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h1>External Hostels</h1>
+      <p class="subtitle">Admins can add, edit, and remove external hostels. Minimum 3 images required.</p>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-body">
+          <h2 class="card-title" id="form-title">Add hostel</h2>
+          <form id="hostel-form">
+            <input type="hidden" id="hostelId" name="hostelId">
+            <div class="field-row">
+              <div>
+                <label for="hostelName">Hostel name</label>
+                <input id="hostelName" name="hostelName" type="text" required>
+              </div>
+              <div>
+                <label for="distanceKm">Distance from campus (km)</label>
+                <input id="distanceKm" name="distanceKm" type="number" min="0" step="0.1" placeholder="e.g., 1.5" required>
+              </div>
+            </div>
+
+            <div>
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" placeholder="e.g., Ayeduase, Kumasi" required>
+            </div>
+
+            <div>
+              <label>Pictures (min 3 URLs)</label>
+              <div id="imagesContainer" class="bookings-list"></div>
+              <div style="margin-top:8px;">
+                <button class="button secondary" type="button" id="addImageFieldBtn">Add image</button>
+              </div>
+              <p class="help">Paste direct image URLs. Add at least three.</p>
+            </div>
+
+            <div style="display:flex; gap:8px;">
+              <button class="button" type="submit" id="saveHostelBtn">Save hostel</button>
+              <button class="button secondary" type="button" id="resetFormBtn">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div style="height:8px;"></div>
+
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">My hostels</h2>
+          <div id="hostelsList" class="bookings-list"></div>
+          <div id="noHostels" class="empty hidden">You haven't added any hostels yet.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> U-STAY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/auth.js"></script>
+  <script type="module" src="/assets/js/admin-hostels.js"></script>
+</body>
+</html>
+

@@ -1,4 +1,5 @@
 const USER_KEY = 'u_stay_user';
+const STUDENTS_KEY = 'u_stay_students';
 
 export function getCurrentUser() {
   try {
@@ -37,9 +38,11 @@ function ensureNavAuthControls() {
 
   const existingAdmin = nav.querySelector('#nav-admin-link');
   const existingLogin = nav.querySelector('#nav-login-link');
+  const existingSignup = nav.querySelector('#nav-signup-link');
   const existingLogout = nav.querySelector('#nav-logout-btn');
   if (existingAdmin) existingAdmin.remove();
   if (existingLogin) existingLogin.remove();
+  if (existingSignup) existingSignup.remove();
   if (existingLogout) existingLogout.remove();
 
   const user = getCurrentUser();
@@ -71,6 +74,13 @@ function ensureNavAuthControls() {
     loginLink.className = 'nav-link';
     loginLink.textContent = 'Login';
     nav.appendChild(loginLink);
+
+    const signupLink = document.createElement('a');
+    signupLink.id = 'nav-signup-link';
+    signupLink.href = '/signup.html';
+    signupLink.className = 'nav-link';
+    signupLink.textContent = 'Sign Up';
+    nav.appendChild(signupLink);
   }
 }
 
@@ -105,4 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
   ensureNavAuthControls();
   initLoginForm();
 });
+
+export function registerStudent(profile) {
+  const list = JSON.parse(localStorage.getItem(STUDENTS_KEY) || '[]');
+  const id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+  const stored = { id, ...profile };
+  list.push(stored);
+  localStorage.setItem(STUDENTS_KEY, JSON.stringify(list));
+  // Auto-login student
+  login({ email: profile.email, role: 'Student', name: profile.name });
+  return stored;
+}
 

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Signup — U-STAY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">U-STAY</a>
+      <nav class="nav">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/bookings.html" class="nav-link">My Bookings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h1>Student Sign Up</h1>
+      <p class="subtitle">Create a student account to book halls.</p>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-body">
+          <form id="signup-form">
+            <div class="field-row">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" required>
+              </div>
+              <div>
+                <label for="programme">Programme</label>
+                <input id="programme" name="programme" type="text" placeholder="e.g., BSc. English Education" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                  <option value="">Select gender</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>Non-binary</option>
+                  <option>Prefer not to say</option>
+                </select>
+              </div>
+              <div>
+                <label for="affiliateHall">Hall of Affiliate</label>
+                <select id="affiliateHall" name="affiliateHall" required>
+                  <option value="">Select hall</option>
+                  <option>Opoku Ware II Hall</option>
+                  <option>Atwima Hall</option>
+                  <option>Autonomy Hall</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="admissionNumber">Admission Number</label>
+                <input id="admissionNumber" name="admissionNumber" type="text" required>
+              </div>
+              <div>
+                <label for="yearOfStudy">Year of Study</label>
+                <select id="yearOfStudy" name="yearOfStudy" required>
+                  <option value="">Select year</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" minlength="6" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" minlength="6" required>
+              </div>
+              <div>
+                <label for="accessibility">Accessibility needs</label>
+                <div>
+                  <label style="display:flex; align-items:center; gap:8px;">
+                    <input id="hasAccessibilityNeeds" name="hasAccessibilityNeeds" type="checkbox">
+                    <span>I have a disability/accessibility need</span>
+                  </label>
+                  <input id="accessibilityType" name="accessibilityType" type="text" placeholder="Type of disability" class="hidden" aria-hidden="true">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label style="display:flex; align-items:center; gap:8px;">
+                <input id="acceptTerms" name="acceptTerms" type="checkbox" required>
+                <span>I accept the terms and conditions</span>
+              </label>
+            </div>
+
+            <div>
+              <button class="button" type="submit">Create account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> U-STAY. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/auth.js"></script>
+  <script type="module" src="/assets/js/signup.js"></script>
+</body>
+</html>
+
